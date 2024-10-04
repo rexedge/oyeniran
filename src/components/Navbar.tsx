@@ -14,6 +14,7 @@ const navItems = [
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
+  { href: '/gallery', label: 'Gallery' },
 ];
 
 export function Navbar() {
@@ -99,13 +100,13 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-background z-50 md:hidden"
+            className="fixed inset-0 bg-background/80 backdrop-blur-md shadow-md z-50 md:hidden"
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
           >
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col h-[100svh] bg-background/80 backdrop-blur-md shadow-md">
               <div className="flex justify-between items-center p-4">
                 <Link
                   href="/"
@@ -118,7 +119,7 @@ export function Navbar() {
                   <X className="h-6 w-6" />
                 </Button>
               </div>
-              <div className="flex flex-col space-y-4 p-4">
+              <div className="flex flex-col space-y-4 p-4 bg-background/80 backdrop-blur-md shadow-md">
                 {navItems.map((item) => (
                   <motion.div
                     key={item.href}
