@@ -46,7 +46,7 @@ const blogPost = {
   `,
   author: {
     name: 'Jane Doe',
-    avatar: '/placeholder.svg',
+    avatar: 'https://placebear.com/g/600/400',
     bio: 'Jane is a senior web developer with over 10 years of experience in building scalable web applications.',
   },
   publishedAt: '2023-05-15T10:00:00Z',
@@ -124,7 +124,7 @@ export default function BlogPostPage() {
             </div>
           </div>
           <Image
-            src="/placeholder.svg"
+            src="https://placebear.com/g/600/400"
             alt={blogPost.title}
             width={800}
             height={400}

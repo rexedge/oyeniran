@@ -82,7 +82,7 @@ export default function AboutPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Image
-            src="/placeholder.svg"
+            src="https://placebear.com/g/400/400"
             alt="Your Name"
             width={400}
             height={400}
