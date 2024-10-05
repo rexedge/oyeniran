@@ -1,5 +1,7 @@
 import { Navbar } from '@/components/Navbar';
+import RandomPageTransition from '@/components/RandomPageTransition';
 import { ThemeProvider } from '@/components/theme-provider';
+import { siteConfig } from '@/lib/constants';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 import './globals.css';
@@ -7,7 +9,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Your Name - Personal Website',
+  title: `${siteConfig.name} - Personal Website`,
   description: 'Full-stack Software Engineer portfolio',
 };
 
@@ -26,7 +28,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="pt-16">{children}</main>
+          <RandomPageTransition>
+            <main className="pt-16">{children}</main>
+          </RandomPageTransition>
         </ThemeProvider>
         <Toaster richColors />
       </body>

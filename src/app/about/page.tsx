@@ -1,9 +1,16 @@
 'use client';
 
+import { SkillBar } from '@/components/SkillBar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { siteConfig } from '@/lib/constants';
 import { motion } from 'framer-motion';
 import { Award, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
@@ -83,7 +90,7 @@ export default function AboutPage() {
         >
           <Image
             src="https://placebear.com/g/400/400"
-            alt="Your Name"
+            alt={siteConfig.name}
             width={400}
             height={400}
             className="rounded-lg shadow-lg"
@@ -95,7 +102,9 @@ export default function AboutPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Hello, I'm Your Name</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+            Hello, I'm {siteConfig.name}
+          </h2>
           <p className="text-lg mb-4">
             I'm a passionate Full-stack Software Engineer with over 5 years of
             experience in crafting elegant solutions to complex problems. My
@@ -113,25 +122,32 @@ export default function AboutPage() {
         </motion.div>
       </div>
 
-      <motion.div
-        className="mb-12"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
-        <h2 className="text-2xl font-semibold mb-4">My Skills</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {skills.map((skill, index) => (
-            <div key={skill.name} className="space-y-2">
-              <div className="flex justify-between">
-                <span>{skill.name}</span>
-                <span>{skill.level}%</span>
-              </div>
-              <Progress value={skill.level} className="w-full" />
-            </div>
-          ))}
-        </div>
-      </motion.div>
+      <Card className="my-8">
+        <CardHeader>
+          <CardTitle>Skills</CardTitle>
+          <CardDescription>
+            My technical expertise and proficiency levels
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <SkillBar skill={skill.name} level={skill.level} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </CardContent>
+      </Card>
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}

@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { siteConfig } from '@/lib/constants';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
@@ -41,7 +42,7 @@ export default function Home() {
           className="text-4xl font-bold mb-4"
           variants={fadeInUp as IVARIANT}
         >
-          Your Name
+          {siteConfig.name}
         </motion.h1>
         <motion.h2
           className="text-2xl text-muted-foreground mb-4"
@@ -80,8 +81,8 @@ export default function Home() {
             variants={fadeInUp as IVARIANT}
           >
             <Image
-              src="https://placebear.com/g/200/200"
-              alt="Your Name"
+              src={siteConfig.ogImage}
+              alt={siteConfig.name}
               layout="fill"
               objectFit="cover"
               className="rounded-full"

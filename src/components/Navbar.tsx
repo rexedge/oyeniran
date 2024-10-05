@@ -2,6 +2,7 @@
 
 import { ModeToggle } from '@/components/mode-toggle';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/lib/constants';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -62,7 +63,7 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="text-2xl font-bold">
-            Your Name
+            {siteConfig.nick}
           </Link>
           <div className="hidden md:flex space-x-4 items-center">
             {navItems.map((item) => (
@@ -100,26 +101,26 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-background/80 backdrop-blur-md shadow-md z-50 md:hidden"
+            className="fixed inset-0 z-50 md:hidden"
             initial="closed"
             animate="open"
             exit="closed"
             variants={menuVariants}
           >
-            <div className="flex flex-col h-[100svh] bg-background/80 backdrop-blur-md shadow-md">
+            <div className="flex flex-col h-[100svh] bg-background/90 backdrop-blur-md shadow-md">
               <div className="flex justify-between items-center p-4">
                 <Link
                   href="/"
                   className="text-2xl font-bold"
                   onClick={() => setIsOpen(false)}
                 >
-                  Your Name
+                  {siteConfig.name}
                 </Link>
                 <Button variant="ghost" size="icon" onClick={toggleMenu}>
                   <X className="h-6 w-6" />
                 </Button>
               </div>
-              <div className="flex flex-col space-y-4 p-4 bg-background/80 backdrop-blur-md shadow-md">
+              <div className="flex flex-col space-y-4 p-4">
                 {navItems.map((item) => (
                   <motion.div
                     key={item.href}
@@ -141,7 +142,7 @@ export function Navbar() {
                   </motion.div>
                 ))}
               </div>
-              <div className="mt-auto p-4">
+              <div className="p-4">
                 <ModeToggle />
               </div>
             </div>
