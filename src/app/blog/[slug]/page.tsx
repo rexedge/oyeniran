@@ -31,11 +31,11 @@ export default function BlogPostPage() {
   const { slug } = useParams();
   const [mounted, setMounted] = useState(false);
 
-  const blogPost = blogPosts.find((blog) => blog.id === Number(slug));
-  if (!blogPost) return notFound();
   useEffect(() => {
     setMounted(true);
   }, []);
+  const blogPost = blogPosts.find((blog) => blog.id === Number(slug));
+  if (!blogPost) return notFound();
 
   if (!mounted) {
     return null; // Prevents SSR issues with useParams
