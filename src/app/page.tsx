@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { siteConfig } from '@/lib/constants';
+import { projects, siteConfig } from '@/lib/constants';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter } from 'lucide-react';
 import Image from 'next/image';
@@ -114,24 +114,21 @@ export default function Home() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={staggerChildren}
         >
-          {[1, 2, 3].map((project) => (
-            <motion.div key={project} variants={fadeInUp as IVARIANT}>
+          {projects.slice(0, 3).map((project) => (
+            <motion.div key={project.id} variants={fadeInUp as IVARIANT}>
               <Card>
                 <CardHeader>
-                  <CardTitle>Project {project}</CardTitle>
+                  <CardTitle>{project.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>
-                    A brief description of the project and the technologies
-                    used.
-                  </p>
+                  <p>{project.description}</p>
                 </CardContent>
                 <CardFooter className="flex justify-between">
                   <Button variant="outline" asChild>
-                    <Link href="#">Demo</Link>
+                    <Link href={project.demoLink}>Demo</Link>
                   </Button>
                   <Button variant="outline" asChild>
-                    <Link href="#">GitHub</Link>
+                    <Link href={project.githubLink}>GitHub</Link>
                   </Button>
                 </CardFooter>
               </Card>
@@ -169,19 +166,19 @@ export default function Home() {
           variants={fadeInUp as IVARIANT}
         >
           <Button variant="outline" size="icon" asChild>
-            <Link href="https://github.com/yourusername">
+            <Link href={siteConfig.links.github}>
               <Github className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </Link>
           </Button>
           <Button variant="outline" size="icon" asChild>
-            <Link href="https://linkedin.com/in/yourusername">
+            <Link href={siteConfig.links.linkedin}>
               <Linkedin className="h-4 w-4" />
               <span className="sr-only">LinkedIn</span>
             </Link>
           </Button>
           <Button variant="outline" size="icon" asChild>
-            <Link href="https://twitter.com/yourusername">
+            <Link href={siteConfig.links.twitter}>
               <Twitter className="h-4 w-4" />
               <span className="sr-only">Twitter</span>
             </Link>

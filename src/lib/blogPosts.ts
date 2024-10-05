@@ -48,6 +48,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/400',
     slug: 'junior-to-senior-developer-journey',
     readingTime: 8,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 2,
@@ -117,6 +120,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/401',
     slug: 'understanding-graphql-basics',
     readingTime: 10,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 3,
@@ -170,6 +176,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/402',
     slug: 'rise-of-edge-computing',
     readingTime: 12,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 4,
@@ -273,6 +282,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/403',
     slug: 'mastering-git-advanced-tips',
     readingTime: 15,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 5,
@@ -348,6 +360,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/404',
     slug: 'ethics-of-artificial-intelligence',
     readingTime: 18,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 6,
@@ -458,6 +473,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/405',
     slug: 'blockchain-beyond-cryptocurrency',
     readingTime: 20,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 7,
@@ -572,6 +590,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/406',
     slug: 'art-of-code-review',
     readingTime: 16,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 8,
@@ -682,6 +703,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/407',
     slug: 'progressive-web-apps-future',
     readingTime: 14,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 9,
@@ -774,6 +798,9 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/408',
     slug: 'microservices-vs-monoliths',
     readingTime: 17,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
   {
     id: 10,
@@ -911,5 +938,8 @@ export const blogPosts: BlogPost[] = [
     image: 'https://placebear.com/800/409',
     slug: 'cybersecurity-in-iot',
     readingTime: 22,
+    likes: 100,
+    comments: 3,
+    shares: 3,
   },
 ];

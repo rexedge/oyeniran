@@ -10,66 +10,18 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { siteConfig } from '@/lib/constants';
+import {
+  awards,
+  education,
+  experiences,
+  siteConfig,
+  skills,
+} from '@/lib/constants';
 import { motion } from 'framer-motion';
 import { Award, BookOpen, Briefcase, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export default function AboutPage() {
-  const [activeTab, setActiveTab] = useState('experience');
-
-  const skills = [
-    { name: 'JavaScript', level: 90 },
-    { name: 'React', level: 85 },
-    { name: 'Node.js', level: 80 },
-    { name: 'Python', level: 75 },
-    { name: 'SQL', level: 70 },
-  ];
-
-  const experiences = [
-    {
-      title: 'Senior Software Engineer',
-      company: 'Tech Innovators Inc.',
-      period: '2020 - Present',
-      description:
-        'Leading development of cutting-edge web applications using React and Node.js.',
-    },
-    {
-      title: 'Full Stack Developer',
-      company: 'Digital Solutions Ltd.',
-      period: '2017 - 2020',
-      description:
-        'Developed and maintained various client projects using MERN stack.',
-    },
-  ];
-
-  const education = [
-    {
-      degree: 'M.S. in Computer Science',
-      school: 'Tech University',
-      year: '2017',
-    },
-    {
-      degree: 'B.S. in Software Engineering',
-      school: 'State College',
-      year: '2015',
-    },
-  ];
-
-  const awards = [
-    {
-      title: 'Innovation Award',
-      organization: 'Tech Innovators Inc.',
-      year: '2022',
-    },
-    {
-      title: 'Best Web Application',
-      organization: 'WebDev Conference',
-      year: '2019',
-    },
-  ];
-
   return (
     <div className="container mx-auto px-4 py-8">
       <motion.h1
@@ -89,7 +41,7 @@ export default function AboutPage() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Image
-            src="https://placebear.com/g/400/400"
+            src={siteConfig.ogImage}
             alt={siteConfig.name}
             width={400}
             height={400}
@@ -154,32 +106,23 @@ export default function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
       >
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs className="w-full" defaultValue="experience">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger
-              value="experience"
-              onClick={() => setActiveTab('experience')}
-            >
-              <Briefcase className="mr-2 h-4 w-4" />
-              Experience
+            <TabsTrigger value="experience" className="gap-2">
+              <Briefcase className=" h-4 w-4" />
+              <div className="hidden md:inline-block">Experience</div>
             </TabsTrigger>
-            <TabsTrigger
-              value="education"
-              onClick={() => setActiveTab('education')}
-            >
-              <GraduationCap className="mr-2 h-4 w-4" />
-              Education
+            <TabsTrigger value="education" className="gap-2">
+              <GraduationCap className=" h-4 w-4" />
+              <div className="hidden md:inline-block">Education</div>
             </TabsTrigger>
-            <TabsTrigger value="awards" onClick={() => setActiveTab('awards')}>
-              <Award className="mr-2 h-4 w-4" />
-              Awards
+            <TabsTrigger value="awards" className="gap-2">
+              <Award className=" h-4 w-4" />
+              <div className="hidden md:inline-block">Awards</div>
             </TabsTrigger>
-            <TabsTrigger
-              value="interests"
-              onClick={() => setActiveTab('interests')}
-            >
-              <BookOpen className="mr-2 h-4 w-4" />
-              Interests
+            <TabsTrigger value="interests" className="gap-2">
+              <BookOpen className=" h-4 w-4" />
+              <div className="hidden md:inline-block">Interests</div>
             </TabsTrigger>
           </TabsList>
           <TabsContent value="experience">

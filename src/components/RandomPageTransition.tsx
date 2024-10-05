@@ -87,7 +87,6 @@ export default function RandomPageTransition({
         key={pathname}
         initial="initial"
         animate="animate"
-        exit="exit"
         variants={animation}
         transition={transition}
       >

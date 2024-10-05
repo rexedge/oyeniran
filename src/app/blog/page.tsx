@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { blogPosts } from '@/lib/blogPosts';
+import { blogCategories, siteConfig } from '@/lib/constants';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Search, Twitter } from 'lucide-react';
 import Image from 'next/image';
@@ -17,128 +19,10 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-const allBlogPosts = [
-  {
-    id: 1,
-    title:
-      'Getting Started with Next.js 13: A Comprehensive Guide for Modern Web Development',
-    excerpt:
-      'Learn how to build modern web applications with Next.js 13 and its powerful features.',
-    date: '2023-05-15',
-    category: 'Web Development',
-    tags: ['Next.js', 'React', 'JavaScript', 'Frontend', 'SSR'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 2,
-    title:
-      'The Power of TypeScript in Large-Scale Applications: Boosting Productivity and Reducing Errors',
-    excerpt:
-      'Discover how TypeScript can improve your development workflow and reduce bugs in large projects.',
-    date: '2023-05-10',
-    category: 'Programming',
-    tags: ['TypeScript', 'JavaScript', 'Software Engineering', 'Static Typing'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 3,
-    title:
-      'Optimizing React Performance: Advanced Techniques for Faster and Smoother User Experiences',
-    excerpt:
-      'Learn advanced techniques to boost the performance of your React applications.',
-    date: '2023-05-05',
-    category: 'Web Development',
-    tags: ['React', 'Performance', 'Optimization', 'JavaScript', 'Frontend'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 4,
-    title: 'Mastering CSS Grid: Building Complex Layouts with Ease',
-    excerpt:
-      'Explore the power of CSS Grid and learn how to create intricate layouts effortlessly.',
-    date: '2023-04-30',
-    category: 'Web Development',
-    tags: ['CSS', 'Layout', 'Frontend', 'Design'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 5,
-    title: 'Introduction to GraphQL: Revolutionizing API Development',
-    excerpt:
-      'Discover how GraphQL is changing the way we build and consume APIs.',
-    date: '2023-04-25',
-    category: 'Programming',
-    tags: ['GraphQL', 'API', 'Backend', 'JavaScript'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 6,
-    title:
-      'Serverless Architecture: Building Scalable Applications in the Cloud',
-    excerpt:
-      'Learn how serverless architecture can simplify your development process and reduce costs.',
-    date: '2023-04-20',
-    category: 'DevOps',
-    tags: ['Serverless', 'Cloud', 'AWS', 'Azure', 'Google Cloud'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 7,
-    title:
-      'Machine Learning for Web Developers: Integrating AI into Your Applications',
-    excerpt:
-      'Explore how web developers can leverage machine learning to create intelligent web applications.',
-    date: '2023-04-15',
-    category: 'AI & Machine Learning',
-    tags: ['Machine Learning', 'AI', 'TensorFlow.js', 'Web Development'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 8,
-    title:
-      'Accessibility in Web Design: Creating Inclusive Digital Experiences',
-    excerpt:
-      'Learn best practices for making your web applications accessible to all users.',
-    date: '2023-04-10',
-    category: 'Web Development',
-    tags: ['Accessibility', 'UX', 'HTML', 'ARIA', 'Web Standards'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 9,
-    title:
-      'Microservices Architecture: Breaking Down Monoliths for Scalability',
-    excerpt:
-      'Understand the benefits and challenges of adopting a microservices architecture.',
-    date: '2023-04-05',
-    category: 'Software Engineering',
-    tags: ['Microservices', 'Architecture', 'Scalability', 'DevOps'],
-    image: 'https://placebear.com/g/400/200',
-  },
-  {
-    id: 10,
-    title: 'State Management in React: Comparing Redux, MobX, and Recoil',
-    excerpt:
-      'Explore different state management solutions for React applications and their use cases.',
-    date: '2023-03-31',
-    category: 'Web Development',
-    tags: ['React', 'State Management', 'Redux', 'MobX', 'Recoil'],
-    image: 'https://placebear.com/g/400/200',
-  },
-];
-
-const categories = [
-  'Web Development',
-  'Programming',
-  'Software Engineering',
-  'DevOps',
-  'AI & Machine Learning',
-];
-
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [visiblePosts, setVisiblePosts] = useState(allBlogPosts.slice(0, 5));
+  const [visiblePosts, setVisiblePosts] = useState(blogPosts.slice(0, 5));
   const [hasMore, setHasMore] = useState(true);
 
   const { ref, inView } = useInView({
@@ -158,17 +42,17 @@ export default function BlogPage() {
 
   const loadMorePosts = () => {
     const currentLength = visiblePosts.length;
-    const morePosts = allBlogPosts.slice(currentLength, currentLength + 3);
+    const morePosts = blogPosts.slice(currentLength, currentLength + 3);
     if (morePosts.length > 0) {
       setVisiblePosts([...visiblePosts, ...morePosts]);
     }
-    if (currentLength + morePosts.length >= allBlogPosts.length) {
+    if (currentLength + morePosts.length >= blogPosts.length) {
       setHasMore(false);
     }
   };
 
   const filterPosts = () => {
-    let filteredPosts = allBlogPosts;
+    let filteredPosts = blogPosts;
     if (selectedCategory) {
       filteredPosts = filteredPosts.filter(
         (post) => post.category === selectedCategory,
@@ -292,7 +176,7 @@ export default function BlogPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {categories.map((category) => (
+                {blogCategories.map((category) => (
                   <Button
                     key={category}
                     variant={
@@ -333,17 +217,17 @@ export default function BlogPage() {
             <CardContent>
               <div className="flex justify-around">
                 <Button size="icon" variant="outline" asChild>
-                  <Link href="https://github.com/yourusername">
+                  <Link href={siteConfig.links.github}>
                     <Github className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button size="icon" variant="outline" asChild>
-                  <Link href="https://linkedin.com/in/yourusername">
+                  <Link href={siteConfig.links.linkedin}>
                     <Linkedin className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button size="icon" variant="outline" asChild>
-                  <Link href="https://twitter.com/yourusername">
+                  <Link href={siteConfig.links.twitter}>
                     <Twitter className="h-4 w-4" />
                   </Link>
                 </Button>

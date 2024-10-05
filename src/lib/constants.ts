@@ -100,6 +100,19 @@ export const projects = [
   },
 ];
 
+export const awards = [
+  {
+    title: 'Innovation Award',
+    organization: 'Tech Innovators Inc.',
+    year: '2022',
+  },
+  {
+    title: 'Best Web Application',
+    organization: 'WebDev Conference',
+    year: '2019',
+  },
+];
+
 export const blogCategories = [
   'Web Development',
   'Programming',

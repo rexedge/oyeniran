@@ -42,6 +42,9 @@ interface BlogPost {
   image: string;
   slug: string;
   readingTime: number;
+  likes: number;
+  comments: number;
+  shares: number;
 }
 
 interface SiteConfig {
